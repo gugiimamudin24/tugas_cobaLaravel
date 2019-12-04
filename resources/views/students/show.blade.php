@@ -1,6 +1,6 @@
 @extends('layout/main')
 
-@section('title', 'detail Mahasiswa')
+@section('title', 'Detail Mahasiswa')
 
 @section('container')
 
@@ -16,8 +16,14 @@
             <p class="card-text">{{ $student->email }}</p>
             <p class="card-text">{{ $student->jurusan }}</p>
 
-            <button type="submit" class="badge badge-primary">Edit</button>
-            <button type="submit" class="badge badge-danger">Hapus</button>
+            <a href="{{ $student->id }}/edit" class="badge badge-primary">Edit</a>
+
+            <form action="/students/{{ $student->id }}" method="post" class="d-inline">
+            @method('delete')
+            @csrf
+            <button type="submit" class="badge badge-danger">Delete</button>
+            </form>
+
             <a href="/students" class="card-link">Kembali</a>
         </div>
     </div>
